@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import "./components/Battle/Battle.css";
 import Start from "./components/FrontPage/Start";
 import NewHamster from "./components/Gallery/NewHamster";
-
+// test
 function App() {
     return (
         <div className="App">
