@@ -20,6 +20,10 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static(staticFolder));
 
+app.get('*', (req,res) => {
+  req.sendFile(path.join(__dirname, '../build', 'index.html'))
+})
+
 //Routes
 app.use("/hamsters", hamsters);
 app.use("/matches", matches);
