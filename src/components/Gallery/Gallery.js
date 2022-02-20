@@ -1,24 +1,18 @@
-
-/* eslint-disable */import React, { useState, useEffect } from "react";
+/* eslint-disable */ import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 import { Link } from "react-router-dom";
 
 const Gallery = () => {
-    const [showInfo, setShowInfo] = useState(false);
     const [hamsters, setHamsters] = useState([]);
     const [trigger, setTrigger] = useState(0);
-
-    const changeInfo = () => {
-        setShowInfo((prevShowInfo) => !prevShowInfo);
-    };
+    const [hamsterGrid, setHamsterGrid] = useState([]);
 
     useEffect(() => {
         const fetchHamsters = async () => {
-            const resp = await fetch(
-                "https://hamsterwars-sinan.herokuapp.com/hamsters/"
-            );
+            const resp = await fetch("/hamsters/");
             const data = await resp.json();
-            setHamsters(data);
+            setHamsters(data.map((x) => ({ ...x, isClicked: false })));
+            displayHamsters();
         };
 
         fetchHamsters();
@@ -29,53 +23,71 @@ const Gallery = () => {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
         };
-        await fetch(
-            `https://hamsterwars-sinan.herokuapp.com/hamsters/${id}`,
-            requestOptions
-        );
+        await fetch(`/hamsters/${id}`, requestOptions);
         setTrigger(trigger + 1);
     };
 
-    const infoOnClick = [];
-    for (let i = 0; i < hamsters.length; i++) {
-        infoOnClick.push(
-            <div onClick={changeInfo} key={hamsters[i].id}>
-                <figure>
-                    <span>Favorite food: {hamsters[i].favFood}</span>
-                    <span>Loves :{hamsters[i].loves}</span>
-                    <span>Games: {hamsters[i].games}</span>
-                    <span>Wins: {hamsters[i].wins}</span>
-                    <span>Defeats: {hamsters[i].defeats}</span>
-                    <figcaption>{hamsters[i].name}</figcaption>
-                    <a
-                        className="delete"
-                        onClick={() => deleteHamster(hamsters[i].id)}
+    const toggleInfo = (hamster) => {
+        hamster.isClicked = !hamster.isClicked;
+        displayHamsters();
+    };
+
+    const displayHamsters = () => {
+        const grid = [];
+        for (let i = 0; i < hamsters.length; i++) {
+            if (hamsters[i].isClicked === true) {
+                grid.push(
+                    <div
+                        onClick={() => toggleInfo(hamsters[i])}
+                        key={hamsters[i].id}
                     >
-                        Delete
-                    </a>
-                </figure>
-            </div>
-        );
-    }
-    const hamsterGrid = [];
-    for (let i = 0; i < hamsters.length; i++) {
-        hamsterGrid.push(
-            <figure key={hamsters[i].id + " 1"}>
-                <img
-                    src={require(`../../img/${hamsters[i].imgName}`)}
-                    alt="hamster-pictures"
-                    onClick={changeInfo}
-                />
-                <figcaption>{hamsters[i].name}</figcaption>
-                <a
-                    className="delete"
-                    onClick={() => deleteHamster(hamsters[i].id)}
-                >
-                    Delete
-                </a>
-            </figure>
-        );
-    }
+                        <figure>
+                            <span className="info">
+                                Favorite food: {hamsters[i].favFood}
+                            </span>
+                            <span className="info">
+                                Loves :{hamsters[i].loves}
+                            </span>
+                            <span className="info">
+                                Games: {hamsters[i].games}
+                            </span>
+                            <span className="info">
+                                Wins: {hamsters[i].wins}
+                            </span>
+                            <span className="info">
+                                Defeats: {hamsters[i].defeats}
+                            </span>
+                            <figcaption>{hamsters[i].name}</figcaption>
+                            <a
+                                className="delete"
+                                onClick={() => deleteHamster(hamsters[i].id)}
+                            >
+                                Delete
+                            </a>
+                        </figure>
+                    </div>
+                );
+            } else {
+                grid.push(
+                    <figure key={hamsters[i].id + " 1"}>
+                        <img
+                            src={require(`../../img/${hamsters[i].imgName}`)}
+                            alt="hamster-pictures"
+                            onClick={() => toggleInfo(hamsters[i])}
+                        />
+                        <figcaption>{hamsters[i].name}</figcaption>
+                        <a
+                            className="delete"
+                            onClick={() => deleteHamster(hamsters[i].id)}
+                        >
+                            Delete
+                        </a>
+                    </figure>
+                );
+            }
+        }
+        setHamsterGrid(grid);
+    };
 
     return (
         <>
@@ -87,9 +99,7 @@ const Gallery = () => {
                 them
             </h1>
 
-            <div className="gallery">
-                {showInfo ? infoOnClick : hamsterGrid}
-            </div>
+            <div className="gallery">{hamsterGrid}</div>
         </>
     );
 };
