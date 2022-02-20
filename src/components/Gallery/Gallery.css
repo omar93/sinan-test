@@ -1,0 +1,71 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 3rem;
+    margin: 0;
+}
+
+.addHamster {
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+figure {
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    max-width: 20vw;
+    margin: auto;
+}
+
+img {
+    max-width: 15vw;
+    max-height: 18vh;
+}
+
+figcaption {
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
+    font-size: larger;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+}
+
+ul {
+    text-align: center;
+}
+
+.nav-item {
+    color: whitesmoke;
+    display: inline;
+    padding: 2rem 2rem;
+    cursor: pointer;
+}
+
+.delete {
+    color: red;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    font-size: x-large;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+span {
+    color: whitesmoke;
+}
