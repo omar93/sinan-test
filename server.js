@@ -9,7 +9,7 @@ const winners = require("./routes/winners");
 const losers = require("./routes/losers");
 
 const PORT = process.env.PORT || 3233;
-const staticFolder = path.join(__dirname, "../build");
+const staticFolder = path.join(__dirname, "/build");
 
 //Middleware
 app.use((req, res, next) => {
@@ -19,10 +19,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cors());
 app.use(express.static(staticFolder));
-
-app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'))
-})
 
 //Routes
 app.use("/hamsters", hamsters);
