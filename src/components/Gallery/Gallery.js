@@ -62,7 +62,7 @@ const Gallery = () => {
         hamsterGrid.push(
             <figure key={hamsters[i].id + " 1"}>
                 <img
-                    src={require(`../../../img/${hamsters[i].imgName}`)}
+                    src={require(`../../img/${hamsters[i].imgName}`)}
                     alt="hamster-pictures"
                     onClick={changeInfo}
                 />
