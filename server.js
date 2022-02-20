@@ -16,9 +16,7 @@ app.use((req, res, next) => {
   console.log(`${req.method}  ${req.url} `, req.params);
   next();
 });
-app.get('*', (req,res) => {
-  res.sendFile(staticFolder, "index.html")
-})
+
 app.use(express.json());
 app.use(cors());
 app.use(express.static(staticFolder));
