@@ -9,7 +9,7 @@ const winners = require("./routes/winners");
 const losers = require("./routes/losers");
 
 const PORT = process.env.PORT || 3233;
-const staticFolder = path.join(__dirname, "static");
+const staticFolder = path.join(__dirname, "../build");
 
 //Middleware
 app.use((req, res, next) => {
