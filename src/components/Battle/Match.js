@@ -9,7 +9,7 @@ const Match = (trigger) => {
     const [clickedHamster, setClickedHamster] = useState(false);
 
     const fetchHamster = async () => {
-        const resp = await fetch("/hamsters/random");
+        const resp = await fetch("hamsters/random");
         const data = await resp.json();
         return data;
     };
