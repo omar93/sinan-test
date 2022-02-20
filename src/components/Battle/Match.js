@@ -19,7 +19,6 @@ const Match = (trigger) => {
     useEffect(() => {
         const getHamsters = async () => {
             let firstHamster = await fetchHamster();
-            console.log("min farsa");
             console.log(firstHamster);
             let secondHamster;
             let secondHamsterFound = false;
