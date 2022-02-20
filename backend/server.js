@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.static(staticFolder));
 
 app.get('*', (req,res) => {
-  req.sendFile(path.join(__dirname, '../build', 'index.html'))
+  res.sendFile(path.join(__dirname, '../build', 'index.html'))
 })
 
 //Routes
