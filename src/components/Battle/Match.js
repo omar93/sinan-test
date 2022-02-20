@@ -10,6 +10,7 @@ const Match = (trigger) => {
 
     const fetchHamster = async () => {
         const resp = await fetch("hamsters/random");
+        console.log(resp);
         const data = await resp.json();
         return data;
     };
@@ -17,6 +18,8 @@ const Match = (trigger) => {
     useEffect(() => {
         const getHamsters = async () => {
             let firstHamster = await fetchHamster();
+            console.log("min farsa");
+            console.log(firstHamster);
             let secondHamster;
             let secondHamsterFound = false;
             while (!secondHamsterFound) {

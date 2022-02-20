@@ -26,28 +26,27 @@ router.get("/", async (req, res) => {
 
 router.get("/random", async (req, res) => {
     console.log("/hamsters Rest Api");
-    console.log("vi kommer in");
     const hamstersRef = firebase.collection("hamsters");
     const snapshot = await hamstersRef.get();
 
     if (snapshot.empty) {
         res.status(404).send("No hamster found.");
         return;
-    } else {
-        var i = 0;
-        var rand = Math.floor(Math.random() * snapshot.size);
-        snapshot.forEach((doc) => {
-            if (i == rand) {
-                const data = doc.data();
-                data.id = doc.id; // id behövs för POST+PUT+DELETE
-                console.log("DATA:");
-                console.log(data);
-                res.send(data);
-                return;
-            }
-            i++;
-        });
     }
+    var i = 0;
+    var random = Math.floor(Math.random() * snapshot.size);
+    snapshot.forEach((doc) => {
+        if (i === random ) {
+            const data = doc.data()
+            data.id = doc.id
+            frontendData = data
+            // data.id = doc.id; // id behövs för POST+PUT+DELETE
+            res.send(data); // här får vi backend problem
+        }
+        i++;
+    });
+    
+    
 
 
 });
