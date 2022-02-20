@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect } from "react";
 import "./Match.css";
 
@@ -148,6 +149,7 @@ const Match = (trigger) => {
                     {hamsterUno ? (
                         <img
                             src={require(`../../../img/${hamsterUno.imgName}`)}
+                            alt="hamster 1"
                         />
                     ) : null}
                     <p>Name: {hamsterUno?.name}</p>
@@ -170,6 +172,7 @@ const Match = (trigger) => {
                     {hamsterDos ? (
                         <img
                             src={require(`../../../img/${hamsterDos.imgName}`)}
+                            alt="hamster 2"
                         />
                     ) : null}
                     <p> Name: {hamsterDos?.name}</p>

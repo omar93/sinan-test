@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+/* eslint-disable */import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 import { Link } from "react-router-dom";
 
