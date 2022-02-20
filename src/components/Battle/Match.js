@@ -148,7 +148,7 @@ const Match = (trigger) => {
                 <div className="hamster-box">
                     {hamsterUno ? (
                         <img
-                            src={require(`../../../img/${hamsterUno.imgName}`)}
+                            src={require(`../../img/${hamsterUno.imgName}`)}
                             alt="hamster 1"
                         />
                     ) : null}
@@ -171,7 +171,7 @@ const Match = (trigger) => {
                 <div className="hamster-box">
                     {hamsterDos ? (
                         <img
-                            src={require(`../../../img/${hamsterDos.imgName}`)}
+                            src={require(`../../img/${hamsterDos.imgName}`)}
                             alt="hamster 2"
                         />
                     ) : null}

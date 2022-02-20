@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(cors());
-app.use(express.static(staticFolder))
+app.use(express.static(staticFolder));
 
 //Routes
 app.use("/hamsters", hamsters);
