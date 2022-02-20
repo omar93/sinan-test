@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   next();
 });
 app.get('*', (req,res) => {
-  res.sendFile(path.join("./build", "index.html"))
+  res.sendFile(staticFolder, "index.html")
 })
 app.use(express.json());
 app.use(cors());
