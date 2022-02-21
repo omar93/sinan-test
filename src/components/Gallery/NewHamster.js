@@ -96,7 +96,7 @@ const NewHamster = () => {
             if (name && loves && favFood && imgName && !isNaN(age)) {
                 alert("Your hamster have been added!");
                 await fetch(
-                    "https://hamsterwars-sinan.herokuapp.com/hamsters/",
+                    "/hamsters/",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },

@@ -9,7 +9,7 @@ const winners = require("./routes/winners");
 const losers = require("./routes/losers");
 
 const PORT = process.env.PORT || 3233;
-const staticFolder = path.join(__dirname, "/build");
+const staticFolder = path.join(__dirname, "../build");
 
 //Middleware
 app.use((req, res, next) => {
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cors());
 app.use(express.static(staticFolder));
-// 
+
 //Routes
 app.use("/hamsters", hamsters);
 app.use("/matches", matches);
@@ -28,6 +28,10 @@ app.use("/matchWinners", matchWinners);
 app.use("/winners", winners);
 app.use("/losers", losers);
 
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 app.listen(PORT, () => {
-  console.log("Server listening on port " + PORT);
+  console.log("Server listening on http://localhost:" + PORT);
 });

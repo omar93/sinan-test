@@ -86,7 +86,7 @@ const Match = (trigger) => {
                 };
 
                 await fetch(
-                    "https://hamsterwars-sinan.herokuapp.com/matches/",
+                    "/matches/",
                     requestOptions
                 );
             };
@@ -106,7 +106,7 @@ const Match = (trigger) => {
                 };
 
                 await fetch(
-                    `https://hamsterwars-sinan.herokuapp.com/hamsters/${
+                    `/hamsters/${
                         didHamsterUnoWin ? hamsterUno?.id : hamsterDos?.id
                     }`,
                     requestOptions
@@ -128,7 +128,7 @@ const Match = (trigger) => {
                 };
 
                 await fetch(
-                    `https://hamsterwars-sinan.herokuapp.com/hamsters/${
+                    `/hamsters/${
                         didHamsterUnoWin ? hamsterDos?.id : hamsterUno?.id
                     }`,
                     requestOptions

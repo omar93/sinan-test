@@ -1,4 +1,4 @@
-/* eslint-disable */ import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 import { Link } from "react-router-dom";
 
@@ -8,15 +8,23 @@ const Gallery = () => {
     const [hamsterGrid, setHamsterGrid] = useState([]);
 
     useEffect(() => {
-        const fetchHamsters = async () => {
-            const resp = await fetch("/hamsters/");
-            const data = await resp.json();
-            setHamsters(data.map((x) => ({ ...x, isClicked: false })));
-            displayHamsters();
-        };
-
-        fetchHamsters();
+        const getData = async () => {
+            fetch("/hamsters/")
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data)
+                setHamsters(data);
+                displayHamsters();
+            })
+            
+        }
+        getData()
+        
     }, [trigger]);
+
+
 
     const deleteHamster = async (id) => {
         const requestOptions = {
@@ -33,6 +41,8 @@ const Gallery = () => {
     };
 
     const displayHamsters = () => {
+        setTrigger(3)
+        console.log(hamsters);
         const grid = [];
         for (let i = 0; i < hamsters.length; i++) {
             if (hamsters[i].isClicked === true) {
@@ -99,7 +109,8 @@ const Gallery = () => {
                 them
             </h1>
 
-            <div className="gallery">{hamsterGrid}</div>
+
+            <div className="gallery">{hamsters && hamsterGrid}</div>
         </>
     );
 };

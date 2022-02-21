@@ -10,7 +10,7 @@ function Start() {
         const reachServer = async () => {
             try {
                 const response = await fetch(
-                    "https://hamsterwars-sinan.herokuapp.com/hamsters/"
+                    "/hamsters/"
                 );
                 const data = await response.json();
                 setHamsters(data);

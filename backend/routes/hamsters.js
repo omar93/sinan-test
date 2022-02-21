@@ -20,8 +20,8 @@ router.get("/", async (req, res) => {
         const data = doc.data();
         data.id = doc.id; // id behövs för POST+PUT+DELETE
         items.push(data);
-    });
-    res.send(items);
+    });    
+    res.send(items.map((item) => ({ ...item, isClicked: false })));
 });
 
 router.get("/random", async (req, res) => {
